@@ -1,4 +1,5 @@
 """A smart choices interface for Django apps."""
+import six
 
 __all__ = ['Choice', 'Choices']
 
@@ -49,11 +50,11 @@ class ChoicesMeta(type):
         # won't support inheritance. Since we control the implementation, we can be
         # naive about this.
         fields = {}
-        for key, val in attrs.iteritems():
+        for key, val in six.iteritems(attrs):
             if isinstance(val, Choice):
                 fields[key] = val
 
-        for key, val in fields.iteritems():
+        for key, val in six.iteritems(fields):
             if isinstance(val, Choice):
                 if val.name:
                     choices.append((val.value, val.name))
@@ -70,9 +71,9 @@ class ChoicesMeta(type):
         return super(ChoicesMeta, cls).__new__(cls, name, bases, attrs)
 
 
+@six.add_metaclass(ChoicesMeta)
 class Choices(object):
     """A representation of a collection of Choices."""
-    __metaclass__ = ChoicesMeta
 
     class Meta:
         smart_names = False
