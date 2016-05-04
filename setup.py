@@ -3,13 +3,16 @@ from setuptools import setup
 
 setup(
     name='smartchoices',
-    version='1.0.1',
+    version='1.1',
     description='A smart choices interface for Django apps',
-    author='Storybird Developers',
-    author_email='dev@storybird.com',
-    url='https://github.com/storybird/smartchoices',
+    author='Paul Hummer',
+    author_email='paul@eventuallyanyway.com',
+    url='https://github.com/rockstar/smartchoices',
     license='MIT',
     py_modules=('smartchoices',),
+    install_requires=[
+        'six',
+    ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
