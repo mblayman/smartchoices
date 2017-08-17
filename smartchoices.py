@@ -68,6 +68,7 @@ class ChoicesMeta(type):
 
         choices = sorted(choices, key=lambda x: x[0])
         attrs['choices'] = tuple(choices)
+        attrs['names'] = {choice[0]: choice[1] for choice in choices}
         return super(ChoicesMeta, cls).__new__(cls, name, bases, attrs)
 
 

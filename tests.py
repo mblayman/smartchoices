@@ -63,6 +63,15 @@ class TestChoices(unittest.TestCase):
         self.assertEqual(1000, ChoiceObj.HIGH_STARTING_CHOICE)
         self.assertEqual(1001, ChoiceObj.NEXT_CHOICE)
 
+    def test_name_from_choice(self):
+        """Choice names can be fetched by the choice."""
+
+        class ChoiceObj(smartchoices.Choices):
+            MY_CHOICE = smartchoices.Choice()
+
+        actual_name = ChoiceObj.names[ChoiceObj.MY_CHOICE]
+        self.assertEqual('MY_CHOICE', actual_name)
+
 
 if __name__ == '__main__':
     unittest.main()
