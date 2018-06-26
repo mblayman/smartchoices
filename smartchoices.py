@@ -34,13 +34,10 @@ class ChoicesMeta(type):
             JayZProblems['FOES_THAT_WANNA_MAKE_SURE_MY_CASKETS_CLOSED']
             will return 0.
         """
-        try:
-            choice_tuple_match = filter(lambda x: x[1] == key, self.choices)
-            # choice_tuple_match will be something like ((0, 'book'))
-            # and we only want the integer value in the tuple.
-            return choice_tuple_match[0][0]
-        except IndexError:
-            raise KeyError(key)
+        for value, name in self.choices:
+            if name == key:
+                return value
+        raise KeyError(key)
 
     def __new__(cls, name, bases, attrs):
         Choice.order = 0  # Reset Choice.order for every new Choices class.

@@ -63,6 +63,24 @@ class TestChoices(unittest.TestCase):
         self.assertEqual(1000, ChoiceObj.HIGH_STARTING_CHOICE)
         self.assertEqual(1001, ChoiceObj.NEXT_CHOICE)
 
+    def test_get_value_by_name(self):
+        """Get the choice value from the string name."""
+
+        class ChoiceObj(smartchoices.Choices):
+            FIRST_CHOICE = smartchoices.Choice()
+            NEXT_CHOICE = smartchoices.Choice()
+
+        self.assertEqual(1, ChoiceObj['NEXT_CHOICE'])
+
+    def test_missing_name(self):
+        """An invalid key is an error."""
+
+        class ChoiceObj(smartchoices.Choices):
+            MY_CHOICE = smartchoices.Choice()
+
+        with self.assertRaises(KeyError):
+            ChoiceObj['INVALID_CHOICE']
+
 
 if __name__ == '__main__':
     unittest.main()
